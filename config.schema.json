@@ -1,0 +1,46 @@
+{
+  "pluginAlias": "SomfyProtect",
+  "pluginType": "accessory",
+  "singular": true,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "required": true,
+        "default": "Somfy Protect"
+      },
+      "username": {
+        "title": "Username",
+        "type": "string",
+        "required": true,
+        "description": "Your Somfy account username"
+      },
+      "password": {
+        "title": "Password",
+        "type": "string",
+        "required": true,
+        "description": "Your Somfy account password"
+      },
+      "loggingAmount": {
+        "title": "Logging",
+        "type": "integer",
+        "default": 0,
+        "oneOf": [
+          {"title": "Off", "enum": [0]},
+          {"title": "Partial", "enum": [1]},
+          {"title": "Full", "enum": [2]}
+        ],
+        "required": true,
+        "description": "How much log do you want (partial will inform only about state changes, full will inform you about everything)"
+      },
+      "siteId": {
+        "title": "Site ID",
+        "type": "string",
+        "required": false,
+        "description": "If you have multiple homes set up on your somfy account, you can specify it's 'Site ID' here so that the plugin knows which home to use. See available site IDs in plugin logs."
+      }
+    }
+  }
+}
