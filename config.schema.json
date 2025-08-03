@@ -1,46 +1,64 @@
 {
   "pluginAlias": "SomfyProtect",
   "pluginType": "accessory",
-  "singular": true,
+  "singular": false,
   "schema": {
     "type": "object",
     "properties": {
       "name": {
-        "title": "Name",
+        "title": "Nom de l'accessoire",
         "type": "string",
+        "default": "Somfy Protect",
         "required": true,
-        "default": "Somfy Protect"
+        "description": "Le nom qui apparaîtra dans HomeKit pour votre alarme Somfy Protect."
       },
       "username": {
-        "title": "Username",
+        "title": "Nom d'utilisateur Somfy",
         "type": "string",
         "required": true,
-        "description": "Your Somfy account username"
+        "description": "L'adresse email de votre compte Somfy Protect."
       },
       "password": {
-        "title": "Password",
+        "title": "Mot de passe Somfy",
         "type": "string",
         "required": true,
-        "description": "Your Somfy account password"
-      },
-      "loggingAmount": {
-        "title": "Logging",
-        "type": "integer",
-        "default": 0,
-        "oneOf": [
-          {"title": "Off", "enum": [0]},
-          {"title": "Partial", "enum": [1]},
-          {"title": "Full", "enum": [2]}
-        ],
-        "required": true,
-        "description": "How much log do you want (partial will inform only about state changes, full will inform you about everything)"
+        "description": "Le mot de passe de votre compte Somfy Protect."
       },
       "siteId": {
-        "title": "Site ID",
+        "title": "ID du site (optionnel)",
         "type": "string",
         "required": false,
-        "description": "If you have multiple homes set up on your somfy account, you can specify it's 'Site ID' here so that the plugin knows which home to use. See available site IDs in plugin logs."
+        "description": "L'identifiant du site si vous avez plusieurs maisons configurées dans Somfy Protect. Laissez vide pour utiliser le premier site trouvé."
+      },
+      "logUserChanges": {
+        "title": "Activer le suivi des utilisateurs",
+        "type": "boolean",
+        "default": true,
+        "required": false,
+        "description": "Active le logging du nom de l'utilisateur qui active/désactive l'alarme. Cette fonctionnalité surveille les changements toutes les 30 secondes."
       }
     }
-  }
+  },
+  "layout": [
+    {
+      "type": "fieldset",
+      "title": "Informations de connexion Somfy Protect",
+      "expandable": false,
+      "items": [
+        "name",
+        "username",
+        "password",
+        "siteId"
+      ]
+    },
+    {
+      "type": "fieldset",
+      "title": "Options avancées",
+      "expandable": true,
+      "expanded": false,
+      "items": [
+        "logUserChanges"
+      ]
+    }
+  ]
 }
